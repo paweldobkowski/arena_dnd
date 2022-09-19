@@ -12,7 +12,14 @@ class Map:
             row = []
 
             for c in range(1, self.wall_size+1):
-                tile = f'{c};{r}'
+                tile = {
+                    'cords': f'{c};{r}',
+                    'type': 'empty'
+                }
+
+                if tile['cords'] == player_position:
+                    tile['type'] = 'player'
+
                 row.append(tile)
             
             game_map.append(row)
@@ -21,9 +28,16 @@ class Map:
 
         return game_map
 
-    # def refresh_map(self):
-    #     for row in self.game_map:
-    #         if player.current_position in row
+    def update_map(self, player_new_position):
+        game_map = self.get_map()
+        for row in game_map:
+            for tile in row:
+                tile['type'] = 'empty'
+
+                if tile['cords'] == player_new_position:
+                    tile['type'] = 'player'
+        
+        self.game_map = game_map
 
     def list_available_moves(self, position, player_speed=1):
         available_moves = []

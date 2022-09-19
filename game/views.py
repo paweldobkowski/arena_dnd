@@ -6,14 +6,16 @@ from game.engine.player import Player
 
 
 player = Player()
-game_map = Map(10)
+game_map = Map(5)
 game_map.create_map(player.current_position)
 
 def index(request):
 
-    val = request.GET.get('TILE')
+    val = request.GET.get('tile')
     available_moves = game_map.list_available_moves(player.current_position, player.speed)
     player.move(val, available_moves)
+
+    game_map.update_map(player.current_position)
 
     print(f'player current position: {player.current_position}')
 

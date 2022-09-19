@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARENA DND</title>
+</head>
+<body>
+
+    {% for row in game_map %}
+    <form>
+        {% for tile in row %}
+        
+            <input type="submit" value={{ tile }} name="TILE">
+
+            {% if forloop.counter|divisibleby:wall_size %}
+                <br>
+            {% endif %}
+            
+
+        {% endfor %}
+    </form>
+    {% endfor %}
+
+</body>
+</html>

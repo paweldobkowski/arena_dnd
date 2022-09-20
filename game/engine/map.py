@@ -28,14 +28,14 @@ class Map:
 
         return game_map
 
-    def update_map(self, player_new_position):
+    def update_map(self, player_previous_position, player_new_position):
         game_map = self.get_map()
-        for row in game_map:
-            for tile in row:
-                tile['type'] = 'empty'
 
-                if tile['cords'] == player_new_position:
-                    tile['type'] = 'player'
+        previous_pos_col, previous_pos_row = player_previous_position.split(';')
+        new_pos_col, new_pos_row = player_new_position.split(';')
+
+        game_map[int(previous_pos_row) - 1][int(previous_pos_col) - 1]['type'] = 'empty'
+        game_map[int(new_pos_row) - 1][int(new_pos_col) - 1]['type'] = 'player'
         
         self.game_map = game_map
 

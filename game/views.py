@@ -5,8 +5,8 @@ from game.engine.player import Player
 
 
 
-player = Player()
-game_map = Map(5)
+player = Player(speed=1)
+game_map = Map(10)
 game_map.create_map(player.current_position)
 
 def index(request):
@@ -15,9 +15,7 @@ def index(request):
     available_moves = game_map.list_available_moves(player.current_position, player.speed)
     player.move(val, available_moves)
 
-    game_map.update_map(player.current_position)
-
-    print(f'player current position: {player.current_position}')
+    game_map.update_map(player.previous_position, player.current_position)
 
     context = {
         'game_map': game_map.get_map(),

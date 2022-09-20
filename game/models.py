@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class TabelaTestowa(models.Model):
+    pierwsze_dane = models.TextField()
+    i_inne_dane = models.BooleanField()
